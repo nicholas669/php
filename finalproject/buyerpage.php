@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $host = "localhost";
 $user = "root";
 $pass = "root";
@@ -20,11 +20,14 @@ if (!isset($_SESSION['username'])){
 if (isset($_POST['buy'])){
     $id = $_POST['buy'];
     $stat = "sold";
-    $upd = "UPDATE car SET status = $stat WHERE id_car = $id";
-    $result = mysqli_query($conn, $upd);
+    
+    $stmt = $conn -> prepare("UPDATE car SET status = ? WHERE id_car = ?");
+    $stmt -> bind_param("ss",$stat,$id);
+
+    $result = $stmt -> execute();
 
     if ($result){
-        echo "<script> alert('Fail to buy') </script>";
+        echo "<script> alert('Car purchased successfully') </script>";
     }
 
 }

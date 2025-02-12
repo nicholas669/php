@@ -18,25 +18,28 @@ if (isset($_POST['submit_l'])){
 
     $sql = "SELECT * FROM user";
     $result = mysqli_query($conn, $sql);
+    var_dump($result);
 
     foreach ($result as $t){
         if ($t['username'] == $name and $t['password'] == $passw and $t['role'] == "buyer"){
             $_SESSION['username'] = $name;
             $_SESSION['password'] = $passw;
             echo "<script> window.location.href = 'buyerpage.php' </script>";
+            exit();
         }
         elseif ($t['username'] == $name and $t['password'] == $passw and $t['role'] == "admin"){
             $_SESSION['username'] = $name;
             $_SESSION['password'] = $passw;
             echo "<script> window.location.href = 'practice.php' </script>";
+            exit();
         }
         else{
             echo "Invalid account";
+            
         }
 
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -54,7 +57,7 @@ if (isset($_POST['submit_l'])){
             <input type="text" name="name_l">
             <br>
             <br>
-            SS
+            
             <label for="">Password</label>
             <input type="password" name="pass_l">
             <input type="submit" name="submit_l">

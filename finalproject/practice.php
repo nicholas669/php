@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 $host = "localhost";
 $user = "root";
 $pass = "root";
@@ -76,6 +76,8 @@ if (isset($_POST['delete'])){
 </head>
 <body>
     <h1>Cars</h1>
+    <button><a href="form.php">Add new car</a></button>
+    <button><a href="logout.php">Logout</a></button>
     <h2>Available</h2>
     <table border="1">
         <tr>
@@ -116,8 +118,10 @@ if (isset($_POST['delete'])){
         </tr>
         <?php } ?>
 
-        <h2>Sold</h2>
+        
     <table border="1">
+
+    <h2>Sold</h2>
         <tr>
             <th>ID</th>
             <th>Brand</th>
@@ -149,13 +153,14 @@ if (isset($_POST['delete'])){
             
         </td>
         <td><?= $t['status'] ?></td>
+        
         </tr>
+ 
         <?php } ?>
 
 
 
-    <button><a href="form.php">Add new car</a></button>
-    <button><a href="logout.php">Logout</a></button>
+    
 
 
 
